@@ -1,0 +1,329 @@
+<style>
+  @media only screen and (max-width: 1023px){
+    /* Track */
+    .container-{{ section.id }} .twcss-custom-scrollbar::-webkit-scrollbar-track {
+        background: #e3e3e3;
+        border-radius: 3px;
+        display: none !important;
+    }
+
+    /* Handle */
+    .container-{{ section.id }} .twcss-custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #1c1d1d;
+        border-radius: 3px;
+        display: none !important;
+    }
+  }
+</style>
+
+<section
+  class='container-{{ section.id }} twcss-w-full twcss-py-20 color-{{ section.settings.color_scheme }}'
+  style='margin-bottom: {{ section.settings.margin_bottom }}px; margin-top: {{ section.settings.margin_top }}px;'
+>
+  <div class='twcss-grid-system'>
+    <div class='twcss-col-span-full twcss-text-center'>
+      {%- if section.settings.title == blank or section.settings.descripcion != blank -%}
+        <div class='twcss-mb-10 twcss-text-center md:twcss-mb-16'>
+          {%- if section.settings.eyebrow != blank -%}
+            <h5 class='twcss-mx-auto twcss-typ-h5-subtopic-3-a twcss-uppercase twcss-mb-2 '>
+              {{ section.settings.eyebrow }}
+            </h5>
+          {%- endif -%}
+          {%- if section.settings.title != blank -%}
+            <h2 class='twcss-mx-auto twcss-capitalize {{ section.settings.title_size }}'>
+              {{ section.settings.title }}
+            </h2>
+          {%- endif -%}
+          {%- if section.settings.descripcion != blank -%}
+            <p class='twcss-typ-body-2 twcss-mt-[18px] twcss-max-w-[{{ section.settings.max_width }}px] md:twcss-mt-3 twcss-mx-auto'>
+              {{ section.settings.descripcion }}
+            </p>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class='twcss-col-span-full'>
+      <div class='twcss-flex lg:twcss-justify-center twcss-w-full twcss-gap-4 twcss-pb-4 twcss-flex-wrap'>
+        {%- for block in section.blocks %}
+          {%- liquid
+            assign value = block.settings
+            assign index = forloop.index
+          -%}
+          {%- case block.type -%}
+            {%- when 'card_section' -%}
+              <div class='twcss-flex twcss-w-full lg:twcss-w-[200px] twcss-flex-col twcss-items-center twcss-border twcss-border-brand-secondary twcss-px-[25px] twcss-py-[35px] md:twcss-border-transparent'>
+                {% if value.image != blank %}
+                  <img
+                    src='{{ value.image | image_url }}'
+                    class='twcss-w-24 twcss-h-24 twcss-object-cover twcss-rounded-md'
+                    alt=''
+                    width='auto'
+                    height='auto'
+                    loading='lazy'
+                  >
+                {% endif %}
+                <h4 class='twcss-mt-3.5 {{ block.settings.title_size }} twcss-text-primary twcss-text-center'>
+                  {{ value.title }}
+                </h4>
+                <div class='rich-text__text rte twcss-text-tertiary twcss-text-center'>
+                  {{- value.description -}}
+                </div>
+              </div>
+
+            {%- when 'box_section' -%}
+              {% liquid
+                assign image_exist = false
+                if value.image != blank
+                  assign image_exist = true
+                endif
+              %}
+
+              <div
+                class='twcss-min-h-[166px] twcss-w-[166px] twcss-p-5 twcss-pt-[30px] twcss-bg-cover md:twcss-min-h-[184px] md:twcss-w-[178px] twcss-relative'
+              >
+                {%- if image_exist %}
+                  <img
+                    class='twcss-w-full twcss-h-full twcss-object-cover twcss-inset-0 twcss-absolute'
+                    src='{{ value.image | image_url }}'
+                    width='auto'
+                    height='auto'
+                    loading='lazy'
+                    alt=''
+                  >
+                {%- endif -%}
+                <span
+                  class='twcss-inset-0 twcss-absolute'
+                  style='{% if image_exist %} background-color: {{ value.background_box }}60; {% else %} background-color: {{ value.background_box }}; {% endif %};'
+                >
+                </span>
+                <div class='twcss-z-10 twcss-relative'>
+                  <h2 class='twcss-mb-[33px]' style='color: {{ value.text_color_box }}'>
+                    {{ index }}
+                  </h2>
+                  <span
+                    class='twcss-mb-[10px] twcss-h-[1px] twcss-w-5 empty:twcss-block'
+                    style='background-color: {{ value.text_color_box }};'
+                  ></span>
+                  <p
+                    class='twcss-w-[125px] hover:!twcss-block'
+                    style='color: {{ value.text_color_box }} !important;'
+                  >
+                    {{ value.title }}
+                  </p>
+                </div>
+              </div>
+          {%- endcase -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "List box items",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Margin bottom",
+      "default": 36
+    },
+    {
+      "type": "inline_richtext",
+      "id": "eyebrow",
+      "label": "eyebrow",
+      "default": "Eyebrow text"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "title",
+      "default": "Title text"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "descripcion",
+      "label": "descripcion",
+      "default": "<p>Descripcion text</p>"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 300,
+      "max": 900,
+      "step": 50,
+      "unit": "px",
+      "label": "Description box width",
+      "default": 550
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card_section",
+      "name": "Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "Title text"
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>lorem</p>"
+        }
+      ]
+    },
+    {
+      "type": "box_section",
+      "name": "Box",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "title",
+          "default": "Title text"
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            }
+          ],
+          "default": "h1",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "color",
+          "id": "background_box",
+          "label": "Background",
+          "default": "#000"
+        },
+        {
+          "type": "color",
+          "id": "text_color_box",
+          "label": "Text color",
+          "default": "#fff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "List box items",
+      "blocks": [
+        {
+          "type": "box_section"
+        },
+        {
+          "type": "box_section"
+        },
+        {
+          "type": "box_section"
+        },
+        {
+          "type": "box_section"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,223 @@
+{% liquid
+  assign buttons_alignment = section.settings.buttons_alignment
+
+  assign button_style_first = section.settings.first_button_type
+  if button_style_first
+    assign button_style_type_first = 'button--secondary'
+  else
+    assign button_style_type_first = 'button--primary'
+  endif
+
+  assign button_style_second = section.settings.second_button_type
+  if button_style_second
+    assign button_style_type_second = 'button--secondary'
+  else
+    assign button_style_type_second = 'button--primary'
+  endif
+%}
+
+<style>
+  @media only screen and (min-width: 1024px) {
+    .ttb_description {
+      max-width: {{ section.settings.ttb_max_width }};
+    }
+  }
+</style>
+
+<section class='color-{{ section.settings.color_scheme }}'>
+  <div
+    class='collection !twcss-grid-system'
+  >
+    <div
+      class='twcss-col-span-12'
+      style='text-align: {{ section.settings.text_alignment }}; padding-top: {{ section.settings.ttb_padding_top }}px; padding-bottom: {{ section.settings.ttb_padding_bottom }}px;'
+    >
+      {% if section.settings.ttb_title %}
+        <h1
+          class='rich-text__heading rte inline-richtext twcss-mb-7 {{ section.settings.heading_size }}'
+        >
+          {{ section.settings.ttb_title }}
+        </h1>
+      {% endif %}
+      {% if section.settings.ttb_max_width %}
+        <div class='rich-text__text rte ttb_description twcss-mx-auto twcss-mb-[34px]'>
+          {{ section.settings.ttb_description }}
+        </div>
+      {% endif %}
+      <div class='twcss-flex twcss-gap-x-5 {{ buttons_alignment }}'>
+        {% if section.settings.ttb_link1 %}
+          <a
+            href='{{ section.settings.ttb_link1 }}'
+            class='twcss-uppercase button {{ button_style_type_first }}'
+          >
+            {{- section.settings.ttb_button1 -}}
+          </a>
+        {% endif %}
+        {% if section.settings.ttb_link2 %}
+          <a
+            href='{{ section.settings.ttb_link2 }}'
+            class='twcss-uppercase button {{ button_style_type_second }}'
+          >
+            {{- section.settings.ttb_button2 -}}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "title text button",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "ttb_title",
+      "label": "Title",
+      "default": "Lorem ipsum dolor sit amet."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h1",
+      "label": "Title size"
+    },
+    {
+      "type": "richtext",
+      "id": "ttb_description",
+      "label": "Description",
+      "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae laboriosam natus optio incidunt vel? Quis dolore dignissimos fuga illum, et magni unde quibusdam iure impedit nostrum soluta porro laboriosam natus.</p>"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "center",
+      "label": "Text alignment"
+    },
+    {
+      "type": "range",
+      "id": "ttb_max_width",
+      "label": "Description Max Width (%)",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 100
+    },
+    {
+      "type": "range",
+      "id": "ttb_padding_top",
+      "label": "Padding Top",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "ttb_padding_bottom",
+      "label": "Padding Bottom",
+      "min": 20,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "url",
+      "id": "ttb_link1",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "ttb_button1",
+      "label": "Button title",
+      "default": "Button Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_button_type",
+      "default": false,
+      "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+    },
+    {
+      "type": "url",
+      "id": "ttb_link2",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "ttb_button2",
+      "label": "Button Title",
+      "default": "Button Title"
+    },
+    {
+      "type": "checkbox",
+      "id": "second_button_type",
+      "default": false,
+      "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+    },
+    {
+      "type": "select",
+      "id": "buttons_alignment",
+      "options": [
+        {
+          "value": "twcss-justify-start",
+          "label": "Start"
+        },
+        {
+          "value": "twcss-justify-center",
+          "label": "Center"
+        },
+        {
+          "value": "twcss-justify-end",
+          "label": "End"
+        }
+      ],
+      "default": "twcss-justify-center",
+      "label": "Buttons Alignment"
+    }
+  ],
+  "presets": [
+    {
+      "name": "title text button"
+    }
+  ]
+}
+{% endschema %}

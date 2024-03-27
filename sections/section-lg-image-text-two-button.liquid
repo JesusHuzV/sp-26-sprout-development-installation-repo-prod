@@ -1,0 +1,208 @@
+<section
+  class='color-{{ section.settings.color_scheme }}'
+  style='padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;'
+>
+  <div class='twcss-grid-system twcss-gap-y-[50px] twcss-mt-4 twcss-mb-[58px] lg:twcss-mt-[50px]'>
+    <div class='twcss-col-span-full {% if section.settings.toggle_image %}md:twcss-col-start-5 lg:twcss-col-start-8{% else %}lg:twcss-col-start-1{% endif %} md:twcss-col-span-4 lg:twcss-col-span-5 twcss-items-center twcss-flex twcss-flex-col twcss-justify-center twcss-p-10 lg:twcss-p-0'>
+      <h5
+        class='{{ section.settings.sub_title_size }} twcss-mb-[16px] twcss-uppercase twcss-text-center twcss-text-primary'
+      >
+        {{ section.settings.sub_title }}
+      </h5>
+      <h2
+        class='{{ section.settings.title_size }} twcss-mb-[16px] twcss-text-center twcss-text-primary'
+      >
+        {{ section.settings.title }}
+      </h2>
+      <div
+        class='rich-text__text rte twcss-mb-[14px] twcss-text-center twcss-text-primary'
+      >
+        {{ section.settings.description }}
+      </div>
+      <div class='twcss-flex twcss-flex-col twcss-w-full twcss-gap-y-4'>
+        {% if section.settings.show_first_button %}
+          <button class='button button--primary'>
+            {{ section.settings.first_button_title | link_to: section.settings.first_button_link }}
+          </button>
+        {% endif %}
+        {% if section.settings.show_second_button %}
+          <button class='button button--secondary'>
+            {{ section.settings.second_button_title | link_to: section.settings.second_button_link }}
+          </button>
+        {% endif %}
+      </div>
+    </div>
+    <div class='twcss-col-span-full twcss-row-start-1 {% if section.settings.toggle_image %}lg:twcss-col-start-1{% else %}lg:twcss-col-start-8{% endif %} md:twcss-col-span-4 lg:twcss-col-span-5'>
+      {% if section.settings.main_image %}
+        <img
+          src='{{ section.settings.main_image | image_url }}'
+          class='{% if section.settings.adapt_image %}twcss-h-[262px]{% endif %} twcss-w-full twcss-object-cover md:twcss-h-[429px] lg:twcss-h-[754px]'
+          alt='logo'
+          loading='lazy'
+          width='auto'
+          height='auto'
+        >
+      {% else %}
+        <div class='twcss-overflow-hidden'>
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "lg image text two button",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    },
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Image"
+    },
+    {
+      "type": "checkbox",
+      "id": "toggle_image",
+      "default": false,
+      "label": "Place banner to the left"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "sub_title",
+      "label": "Store title",
+      "default": "YOUR STORE"
+    },
+    {
+      "type": "select",
+      "id": "sub_title_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Section title",
+      "default": "Lorem ipsum"
+    },
+    {
+      "type": "select",
+      "id": "title_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        },
+        {
+          "value": "hxl",
+          "label": "t:sections.all.heading_size.options__4.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "richtext",
+      "id": "description",
+      "label": "Description",
+      "default": "<p>5 miles away  •  Open now until 8pm today</p>"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_first_button",
+      "default": true,
+      "label": "Show first button"
+    },
+    {
+      "type": "text",
+      "id": "first_button_title",
+      "label": "First button title",
+      "default": "Store Hours and Services"
+    },
+    {
+      "type": "url",
+      "id": "first_button_link",
+      "label": "First Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_second_button",
+      "default": true,
+      "label": "Show second button"
+    },
+    {
+      "type": "text",
+      "id": "second_button_title",
+      "label": "Second button title",
+      "default": "Call us at (111) 111-1111"
+    },
+    {
+      "type": "url",
+      "id": "second_button_link",
+      "label": "Second button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "adapt_image",
+      "default": false,
+      "label": "Adapt image (Movil only)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "lg image text two button"
+    }
+  ]
+}
+{% endschema %}

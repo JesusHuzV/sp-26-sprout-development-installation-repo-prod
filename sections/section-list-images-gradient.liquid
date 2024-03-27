@@ -1,0 +1,173 @@
+{% liquid
+  assign button_style = section.settings.button_style
+
+  if button_style
+    assign button_style_type = 'button--secondary'
+  else
+    assign button_style_type = 'button--primary'
+  endif
+%}
+
+<section
+  style='padding-bottom: {{ section.settings.padding_bottom }}px; padding-top: {{ section.settings.padding_top }}px;'
+  class='twcss-custom-scrollbar twcss-m-auto twcss-my-16 twcss-flex twcss-max-w-[1920px] twcss-overflow-x-auto twcss-bg-scroll twcss-pb-8'
+>
+  {%- for block in section.blocks -%}
+    <div
+      class='twcss-w-1/4 twcss-min-w-[300px] twcss-bg-cover twcss-bg-center twcss-relative twcss-min-h-[700px]'
+    >
+      {% if block.settings.backogrund_image %}
+        <img
+          class='twcss-w-full twcss-h-full twcss-inset-0 twcss-absolute twcss-object-cover'
+          src='{{ block.settings.backogrund_image | image_url }}'
+          width='auto'
+          height='auto'
+          alt=''
+          loading='lazy'
+        >
+      {% endif %}
+      <div
+        class='twcss-t-0 twcss-absolute twcss-h-full twcss-w-full empty:twcss-block twcss-z-0'
+        style='background: linear-gradient(transparent, {{ section.settings.gradient_color }});'
+      ></div>
+      <div class='twcss-top-0 twcss-flex twcss-h-full twcss-w-full twcss-flex-col twcss-justify-between twcss-px-[39px] twcss-py-[50px] twcss-text-center md:twcss-px-[47px] md:twcss-py-[65px] lg:twcss-px-[75px] lg:twcss-py-[110px] twcss-z-[1] twcss-relative'>
+        <h2 class='{{ block.settings.title_size }} twcss-uppercase twcss-text-background'>
+          {{ block.settings.title }}
+        </h2>
+
+        <div>
+          <div class='rich-text__text rte  twcss-mb-6 !twcss-text-background [&>*]:!twcss-text-background'>
+            {{ block.settings.description }}
+          </div>
+          <a
+            href='{{ block.settings.url_button }}'
+            class='button twcss-hidden twcss-border-none lg:twcss-block {{ button_style_type }}'
+          >
+            {{ block.settings.button_title }}
+          </a>
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+</section>
+
+{% schema %}
+{
+  "name": "List images gradient",
+  "tag": "section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "button_style",
+      "default": false,
+      "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    },
+    {
+      "type": "color",
+      "id": "gradient_color",
+      "label": "Gradient color",
+      "default": "#000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item_gradient",
+      "name": "Item gradient",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "backogrund_image",
+          "label": "Background iamge"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "LOREM IPSUM"
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            }
+          ],
+          "default": "h2",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget sollicitudin odio. Pellentesque ullamcorper, libero vehicula lacinia luctus, magna justo pharetra mi, non iaculis odio orci eget nisl.</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_title",
+          "label": "Button title",
+          "default": "LOREM IPSUM"
+        },
+        {
+          "type": "url",
+          "id": "url_button",
+          "label": "url"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "List images gradient",
+      "blocks": [
+        {
+          "type": "item_gradient"
+        },
+        {
+          "type": "item_gradient"
+        },
+        {
+          "type": "item_gradient"
+        },
+        {
+          "type": "item_gradient"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

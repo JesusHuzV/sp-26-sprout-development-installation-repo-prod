@@ -1,0 +1,204 @@
+{% liquid
+  assign button_style = section.settings.button_style
+
+  if button_style
+    assign button_style_type = 'button--secondary'
+  else
+    assign button_style_type = 'button--primary'
+  endif
+%}
+
+<style>
+  /* width */
+  .container-scroll::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  /* Track */
+  .container-scroll::-webkit-scrollbar-track {
+    background: #e3e3e3;
+    border-radius: 3px;
+  }
+
+  /* Handle */
+  .container-scroll::-webkit-scrollbar-thumb {
+    background: #1c1d1d;
+    border-radius: 3px;
+  }
+</style>
+
+<section
+  class='color-{{ section.settings.color_scheme }}'
+>
+  <div
+    class='twcss-grid-system'
+    style='padding-top: {{ section.settings.padding_top }}px; padding-bottom: {{ section.settings.padding_bottom }}px;'
+  >
+    <div
+      class='container-scroll twcss-col-span-full twcss-flex twcss-items-start twcss-gap-4 twcss-overflow-x-scroll twcss-bg-scroll'
+    >
+      {% for block in section.blocks %}
+        <div
+          class='twcss-group twcss-w-[269px] twcss-min-w-[269px] twcss-bg-background md:twcss-min-w-[216px] lg:twcss-mb-[46px] lg:twcss-min-w-[245px] hover:lg:twcss-mb-0'
+        >
+          <div class='twcss-mb-[16px] lg:twcss-mb-3'>
+            {% if block.settings.image %}
+              <img
+                src='{{ block.settings.image | image_url }}'
+                class='twcss-h-[269px] twcss-w-full twcss-object-cover md:twcss-h-[216px] lg:twcss-h-[245px]'
+                alt='logo'
+                loading='lazy'
+                width='auto'
+                height='auto'
+              >
+            {% else %}
+              {{ 'collection-5' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+          <h4 class='{{ block.settings.title_size }} twcss-mb-2 twcss-uppercase twcss-text-primary'>
+            {{ block.settings.title }}
+          </h4>
+          <div class='rich-text__text rte twcss-text-tertiary twcss-mb-[20px]'>
+            {{ block.settings.description }}
+          </div>
+          {% if block.settings.show_button %}
+            <a
+              href='{{ block.settings.url_link }}'
+              class='button {{ button_style_type }} twcss-mt-2 !twcss-hidden lg:group-hover:!twcss-flex'
+            >
+              {{ block.settings.button_text }}
+            </a>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Card list 1",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "button_style",
+      "default": false,
+      "label": "t:sections.image-banner.blocks.buttons.settings.button_style_secondary_1.label"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "title",
+          "label": "Title",
+          "default": "Lorem ipsum dolor sit amet."
+        },
+        {
+          "type": "select",
+          "id": "title_size",
+          "options": [
+            {
+              "value": "h2",
+              "label": "t:sections.all.heading_size.options__1.label"
+            },
+            {
+              "value": "h1",
+              "label": "t:sections.all.heading_size.options__2.label"
+            },
+            {
+              "value": "h0",
+              "label": "t:sections.all.heading_size.options__3.label"
+            },
+            {
+              "value": "hxl",
+              "label": "t:sections.all.heading_size.options__4.label"
+            }
+          ],
+          "default": "h2",
+          "label": "t:sections.all.heading_size.label"
+        },
+        {
+          "type": "richtext",
+          "id": "description",
+          "label": "Description",
+          "default": "<p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam vitae earum molestiae possimus ipsa saepe dolorem enim aspernatur ut! Unde repellendus iste quasi porro doloribus. Distinctio nesciunt dolorem dicta quis ab. Praesentium eius obcaecati rem, mollitia a dicta eos vitae!</p>"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Button"
+        },
+        {
+          "type": "url",
+          "id": "url_link",
+          "label": "Link"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_button",
+          "label": "Show button",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Card list 1",
+      "blocks": [
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        },
+        {
+          "type": "card"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

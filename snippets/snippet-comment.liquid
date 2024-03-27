@@ -1,0 +1,35 @@
+<div
+  class='twcss-h-full twcss-w-full twcss-flex twcss-justify-between twcss-flex-col twcss-p-10'
+>
+  <div>
+    {%- render 'icon-chevron-open', color: color -%}
+  </div>
+  <div class='twcss-p-4'>
+    <h5
+      class='twcss-mb-[40px] md:twcss-text-[15px] lg:twcss-mb-[60px] lg:twcss-text-2xl twcss-border-cyan-50'
+      style='color: {{ color }};'
+    >
+      {{- comment | truncate: 330 -}}
+    </h5>
+    <div
+      class='twcss-flex twcss-flex-col twcss-border-l twcss-pl-[11px]'
+      style='border-color: {{ color }};'
+    >
+      <h4
+        class='twcss-typ-h4-subtopic-2 twcss-capitalize'
+        style='color: {{ color }}'
+      >
+        {{- author -}}
+      </h4>
+      <span
+        class='twcss-body-2'
+        style='color: {{ color }}'
+      >
+        {{- charge -}}
+      </span>
+    </div>
+  </div>
+  <div class='twcss-flex twcss-justify-end'>
+    {%- render 'icon-chevron-close', color: color -%}
+  </div>
+</div>

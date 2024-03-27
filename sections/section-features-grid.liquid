@@ -1,0 +1,397 @@
+<div
+  class='twcss-w-full twcss-bg-background color-{{ section.settings.color_scheme }}'
+  style='padding: {{ section.settings.spacing }}px'
+>
+  <div class='twcss-container twcss-px-5 twcss-mx-auto twcss-max-w-[1200px]'>
+    {% if section.settings.title != blank %}
+      <h2 
+        class='{{ section.settings.title_align }} {{ section.settings.title_transform }} twcss-pb-4 twcss-text-[length:--font-size] twcss-text-[color:--font-color] twcss-font-[--font-weight]'
+        style='--font-size: {{ section.settings.title_size }}px; --font-color: {{ section.settings.title_color }}; --font-weight: {{ section.settings.title_weight }};'
+      >
+        {{ section.settings.title }}
+      </h2>
+    {% endif %}
+
+    {% if section.blocks.size > 0 %}
+      <div
+        class='twcss-grid twcss-grid-cols-1 twcss-gap-1 sm:twcss-grid-cols-2 md:twcss-grid-cols-[repeat(var(--medium-columns-grid),minmax(0,1fr))]'
+        style='--medium-columns-grid: {{ section.settings.grid }};gap: {{ section.settings.grid_spacing }}px;'
+      >
+        {% for block in section.blocks %}
+          <div>
+            {% if block.settings.display_image %}
+              {% if block.settings.image != blank %}
+                <img
+                  src='{{ block.settings.image | image_url }}'
+                  alt=''
+                  class='twcss-block twcss-object-cover twcss-w-40 twcss-h-40 twcss-mx-auto twcss-mb-2 twcss-rounded-full lazyload'
+                  width='auto'
+                  height='auto'
+                  loading='lazy'
+                >
+              {% else %}
+                {{ 'detailed-apparel-1' | placeholder_svg_tag: "twcss-block twcss-w-40 twcss-h-40 twcss-mx-auto twcss-mb-2 twcss-border twcss-rounded-full" }}
+              {% endif %}
+            {% endif %}
+
+            {% if block.settings.title %}
+              <h3 
+                class='{{ block.settings.title_align }} {{ block.settings.title_transform }} twcss-text-[length:--font-size] twcss-text-[color:--font-color] twcss-font-[--font-weight]'
+                style="--font-size: {{ block.settings.title_size }}px; --font-color: {{ block.settings.title_color }}; --font-weight: {{ block.settings.title_weight }};"
+              >
+                {{ block.settings.title }}
+              </h3>
+            {% endif %}
+
+            {% if block.settings.text %}
+              <h5 
+                class='{{ block.settings.text_align }} twcss-mb-4 twcss-text-[length:--font-size] twcss-text-[color:--font-color] twcss-font-medium'
+                style='--font-size: {{ block.settings.text_size }}px; --font-color: {{ block.settings.text_color }};'
+              >
+                {{ block.settings.text }}
+              </h5>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Features grid",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "background-1"
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "label": "Spacing top and bottom",
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "Title settings"
+    },
+    {
+      "label": "Title",
+      "id": "title",
+      "type": "text"
+    },
+    {
+      "label": "Title weight",
+      "id": "title_weight",
+      "type": "select",
+      "default": "700",
+      "options": [
+        {
+          "group": "style",
+          "value": "400",
+          "label": "400"
+        },
+        {
+          "group": "style",
+          "value": "500",
+          "label": "500"
+        },
+        {
+          "group": "style",
+          "value": "600",
+          "label": "600"
+        },
+        {
+          "group": "style",
+          "value": "700",
+          "label": "700"
+        },
+        {
+          "group": "style",
+          "value": "800",
+          "label": "800"
+        },
+        {
+          "group": "style",
+          "value": "900",
+          "label": "900"
+        }
+      ]
+    },
+    {
+      "label": "Title type",
+      "id": "title_transform",
+      "type": "select",
+      "default": "capitalize",
+      "options": [
+        {
+          "value": "lowercase",
+          "label": "Lowercase"
+        },
+        {
+          "value": "capitalize",
+          "label": "Capitalize"
+        },
+        {
+          "value": "uppercase",
+          "label": "Uppercase"
+        },
+        {
+          "value": "normal-case",
+          "label": "Normal"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 10,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "Font Size Title",
+      "default": 42
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Color Title",
+      "default": "#4A5568"
+    },
+    {
+      "type": "select",
+      "id": "title_align",
+      "options": [
+        {
+          "value": "twcss-text-left",
+          "label": "Left"
+        },
+        {
+          "value": "twcss-text-center",
+          "label": "Center"
+        },
+        {
+          "value": "twcss-text-right",
+          "label": "Right"
+        }
+      ],
+      "label": "Title align",
+      "default": "twcss-text-center"
+    },
+    {
+      "type": "range",
+      "id": "grid",
+      "label": "Columns to show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "grid_spacing",
+      "label": "Spacing between items",
+      "min": 0,
+      "max": 25,
+      "step": 5,
+      "default": 10
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Features",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "display_image",
+          "label": "Display image",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "header",
+          "content": "Title settings"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature"
+        },
+        {
+          "label": "Title weight",
+          "id": "title_weight",
+          "type": "select",
+          "default": "700",
+          "options": [
+            {
+              "group": "style",
+              "value": "400",
+              "label": "400"
+            },
+            {
+              "group": "style",
+              "value": "500",
+              "label": "500"
+            },
+            {
+              "group": "style",
+              "value": "600",
+              "label": "600"
+            },
+            {
+              "group": "style",
+              "value": "700",
+              "label": "700"
+            },
+            {
+              "group": "style",
+              "value": "800",
+              "label": "800"
+            },
+            {
+              "group": "style",
+              "value": "900",
+              "label": "900"
+            }
+          ]
+        },
+        {
+          "label": "Title type",
+          "id": "title_transform",
+          "type": "select",
+          "default": "capitalize",
+          "options": [
+            {
+              "value": "lowercase",
+              "label": "Lowercase"
+            },
+            {
+              "value": "capitalize",
+              "label": "Capitalize"
+            },
+            {
+              "value": "normal-case",
+              "label": "Normal"
+            }
+          ]
+        },
+        {
+          "type": "range",
+          "id": "title_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Font size title",
+          "default": 24
+        },
+        {
+          "type": "color",
+          "id": "title_color",
+          "label": "Color title",
+          "default": "#4A5568"
+        },
+        {
+          "type": "select",
+          "id": "title_align",
+          "options": [
+            {
+              "value": "twcss-text-left",
+              "label": "Left"
+            },
+            {
+              "value": "twcss-text-center",
+              "label": "Center"
+            },
+            {
+              "value": "twcss-text-right",
+              "label": "Right"
+            }
+          ],
+          "label": "Title align",
+          "default": "twcss-text-center"
+        },
+        {
+          "type": "header",
+          "content": "Text settings"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea velit iure blanditiis autem facilis minima nesciunt exercitationem!</p>"
+        },
+        {
+          "type": "range",
+          "id": "text_size",
+          "min": 10,
+          "max": 50,
+          "step": 1,
+          "unit": "px",
+          "label": "Font Size Text",
+          "default": 16
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Color Text",
+          "default": "#718096"
+        },
+        {
+          "type": "select",
+          "id": "text_align",
+          "options": [
+            {
+              "value": "twcss-text-left",
+              "label": "Left"
+            },
+            {
+              "value": "twcss-text-center",
+              "label": "Center"
+            },
+            {
+              "value": "twcss-text-right",
+              "label": "Right"
+            }
+          ],
+          "label": "Text align",
+          "default": "twcss-text-center"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features grid",
+      "category": "Text",
+      "blocks": [
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        },
+        {
+          "type": "item"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

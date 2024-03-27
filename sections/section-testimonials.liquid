@@ -1,0 +1,199 @@
+<section
+  class='color-{{ section.settings.color_scheme }} twcss-bg-brand-light-blue'
+  style='background-image: url("{{ section.settings.bg_image | image_url }}");'
+>
+  <div
+    class='lg:twcss-px-100 md:twcss-px-50'
+    style='max-width:1200px; margin-left: auto; margin-right: auto;'
+  >
+    <div
+      class='twcss-px-6 twcss-py-10 lg:twcss-container lg:twcss-max-w-screen-xlg lg:twcss-pt-[--padding-top] lg:twcss-pb-[--padding-bottom]'
+      style='--padding-top: {{ section.settings.padding_top | round: 0 }}px; --padding-bottom: {{ section.settings.padding_bottom | round: 0 }}px;'
+    >
+      <div class='twcss-grid twcss-grid-cols-12 twcss-gap-4 twcss-items-center'>
+        <div class='twcss-mx-3 twcss-col-span-12 lg:twcss-col-span-5'>
+          <div class='twcss-flex twcss-flex-col twcss-gap-4 lg:twcss-gap-4'>
+            {%- if section.settings.subtitle != blank -%}
+              <h2
+                class='twcss-w-full twcss-text-2xl twcss-font-medium twcss-tracking-tight twcss-text-amber-500'
+              >
+                {{ section.settings.subtitle }}
+              </h2>
+            {%- endif -%}
+
+            {%- if section.settings.title != blank -%}
+              <h2
+                class='twcss-text-4xl twcss-text-secondary-grey-1 md:twcss-text-6xl/[72px]'
+                style='line-height: 50px;'
+              >
+                {{ section.settings.title }}
+              </h2>
+            {%- endif -%}
+
+            {%- if section.settings.description != blank -%}
+              <p class='twcss-text-base twcss-text-secondary-grey-2 md:twcss-text-lg'>
+                {{ section.settings.description }}
+              </p>
+            {%- endif -%}
+          </div>
+        </div>
+
+        <div class='twcss-col-span-12 lg:twcss-col-span-7'>
+          <div class='twcss-columns-1 twcss-gap-y-16 lg:twcss-columns-2 lg:twcss-gap-y-20 lg:twcss-gap-x-4'>
+            {%- for block in section.blocks -%}
+              <div class='twcss-pt-16 first:twcss-hidden last:twcss-hidden lg:first:twcss-block lg:last:twcss-block lg:first:twcss-pt-0 lg:twcss-pt-20 lg:twcss-pr-10'>
+                <div
+                  class='twcss-bg-white twcss-p-5 twcss-mx-4 twcss-mb-5 twcss-rounded-2xl lg:twcss-p-8 '
+                  style='background-color: {{ section.settings.background_color_card }};'
+                >
+                  {%- if block.settings.image != blank -%}
+                    {{
+                      block.settings.image
+                      | image_url: width: 75, height: 75
+                      | image_tag:
+                        loading: 'lazy',
+                        alt: block.settings.name,
+                        class: 'twcss-w-[70px] twcss-h-[70px] twcss-rounded-full twcss-border-2 twcss-border-white -twcss-mt-16 twcss-mb-4 lg:twcss-w-[75px] lg:twcss-h-[75px]'
+                    }}
+                  {%- endif -%}
+
+                  {%- if block.settings.name != blank -%}
+                    <p class='twcss-text-lg/6 twcss-text-secondary-grey-1 twcss-font-medium lg:twcss-text-xl'>
+                      {{ block.settings.name }}
+                    </p>
+                  {%- endif -%}
+
+                  {%- if block.settings.content != blank -%}
+                    <p class='twcss-text-base twcss-text-secondary-grey-1 twcss-font-medium twcss-mt-5 lg:twcss-text-lg lg:twcss-mt-6'>
+                      {{ block.settings.content }}
+                    </p>
+                  {%- endif -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          </div>
+
+          <div class='lg:twcss-hidden twcss-flex twcss-mx-3 twcss-gap-2 twcss-justify-center twcss-px-16 twcss-py-3 twcss-mt-6 twcss-font-semibold twcss-rounded-md twcss-border-2 twcss-border-solid twcss-border-neutral-100 twcss-leading-[124%]'>
+            <a
+              href='{{ section.settings.link_url }}'
+              class='twcss-no-underline twcss-text-brand-cta-blue twcss-underline twcss-text-xl twcss-font-medium'
+            >
+              {{ section.settings.link_text }}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "default"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "background_color_card",
+      "label": "Background Color Card",
+      "default": "#ffffff"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "What our customers say"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "What our customers say"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description",
+      "default": "Lorem ipsum dolor sit amet dolor consectetur adipiscing elitipsum sit"
+    },
+    {
+      "type": "header",
+      "content": "More reviews link"
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link text",
+      "default": "See more reviews"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link",
+      "default": "/"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 80
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Content"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials"
+    }
+  ]
+}
+{% endschema %}
