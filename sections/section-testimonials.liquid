@@ -19,11 +19,7 @@
               >
                 {{ section.settings.subtitle }}
               </h2>
-              <h2
-                class='twcss-font-bold twcss-w-full twcss-text-4xl twcss-font-medium twcss-tracking-tight twcss-text-amber-500'
-              >
-                {{ section.settings.subtitle }}
-              </h2>
+              
             {%- endif -%}
 
             {%- if section.settings.title != blank -%}
@@ -36,7 +32,7 @@
             {%- endif -%}
 
             {%- if section.settings.description != blank -%}
-              <p class='twcss-text-base twcss-text-secondary-grey-1 twcss-font-medium twcss-mt-5 lg:twcss-text-lg lg:twcss-mt-6'>
+              <p class='twcss-text-base twcss-text-secondary-grey-2 md:twcss-text-lg twcss-text-4xl lg:twcss-text-lg'>
                 {{ section.settings.description }}
               </p>
             {%- endif -%}
@@ -69,7 +65,7 @@
                   {%- endif -%}
 
                   {%- if block.settings.content != blank -%}
-                    <p class='twcss-text-lg/6 twcss-text-secondary-grey-1 twcss-font-medium lg:twcss-text-x1 twcss-text-4xl'>
+                    <p class='twcss-text-base twcss-text-secondary-grey-1 twcss-font-medium twcss-mt-5 lg:twcss-text-lg lg:twcss-mt-6'>
                       {{ block.settings.content }}
                     </p>
                   {%- endif -%}
