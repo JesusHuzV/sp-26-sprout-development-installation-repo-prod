@@ -7,9 +7,50 @@
     },
     "section_testimonials_fKUYXk": {
       "type": "section-testimonials",
+      "blocks": {
+        "text_WjP8VR": {
+          "type": "text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/r1.jpg",
+            "name": "asdasdasd",
+            "content": "<p>asdasdasdasdasdasd<\/p>"
+          }
+        },
+        "text_8pLLUL": {
+          "type": "text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/r1.jpg",
+            "name": "asdasdasd",
+            "content": "<p>asdasdasdasdasdasd<\/p>"
+          }
+        },
+        "text_yAHcYD": {
+          "type": "text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/r1.jpg",
+            "name": "asdasdasd",
+            "content": "<p>asdasdasdasdasdasd<\/p>"
+          }
+        },
+        "text_zaTYcA": {
+          "type": "text",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/r1.jpg",
+            "name": "asdasdasd",
+            "content": "<p>asdasdasdasdasdasd<\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "text_WjP8VR",
+        "text_8pLLUL",
+        "text_yAHcYD",
+        "text_zaTYcA"
+      ],
       "settings": {
-        "color_scheme": "",
-        "background_color_card": "#ffffff",
+        "color_scheme": "accent-1",
+        "bg_image": "shopify:\/\/shop_images\/r3.jpg",
+        "background_color_card": "#1773b0",
         "subtitle": "What our customers say",
         "title": "What our customers say",
         "description": "Lorem ipsum dolor sit amet dolor consectetur adipiscing elitipsum sit",
