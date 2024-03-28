@@ -2,6 +2,7 @@
   "sections": {
     "main": {
       "type": "main-404",
+      "disabled": true,
       "settings": {
       }
     },
@@ -12,40 +13,40 @@
           "type": "text",
           "settings": {
             "image": "shopify:\/\/shop_images\/r1.jpg",
-            "name": "asdasdasd",
-            "content": "<p>asdasdasdasdasdasd<\/p>"
+            "name": "James Perterson, RN",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus. Phasellus nec tortor ex.<\/p>"
           }
         },
-        "text_8pLLUL": {
+        "text_67Ve8Y": {
           "type": "text",
           "settings": {
             "image": "shopify:\/\/shop_images\/r1.jpg",
-            "name": "asdasdasd",
-            "content": "<p>asdasdasdasdasdasd<\/p>"
+            "name": "James Perterson, RN",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus. Phasellus nec tortor ex.<\/p>"
           }
         },
-        "text_yAHcYD": {
+        "text_krbGQ9": {
           "type": "text",
           "settings": {
             "image": "shopify:\/\/shop_images\/r1.jpg",
-            "name": "asdasdasd",
-            "content": "<p>asdasdasdasdasdasd<\/p>"
+            "name": "James Perterson, RN",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus. Phasellus nec tortor ex.<\/p>"
           }
         },
-        "text_zaTYcA": {
+        "text_cMp3RC": {
           "type": "text",
           "settings": {
             "image": "shopify:\/\/shop_images\/r1.jpg",
-            "name": "asdasdasd",
-            "content": "<p>asdasdasdasdasdasd<\/p>"
+            "name": "James Perterson, RN",
+            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus. Phasellus nec tortor ex.<\/p>"
           }
         }
       },
       "block_order": [
         "text_WjP8VR",
-        "text_8pLLUL",
-        "text_yAHcYD",
-        "text_zaTYcA"
+        "text_67Ve8Y",
+        "text_krbGQ9",
+        "text_cMp3RC"
       ],
       "settings": {
         "color_scheme": "accent-1",
@@ -53,7 +54,7 @@
         "background_color_card": "#1773b0",
         "subtitle": "What our customers say",
         "title": "What our customers say",
-        "description": "Lorem ipsum dolor sit amet dolor consectetur adipiscing elitipsum sit",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus.",
         "link_text": "See more reviews",
         "link_url": "\/",
         "padding_top": 80,
