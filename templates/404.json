@@ -12,9 +12,9 @@
         "text_WjP8VR": {
           "type": "text",
           "settings": {
-            "image": "shopify:\/\/shop_images\/r1.jpg",
-            "name": "James Perterson, RN",
-            "content": "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus. Phasellus nec tortor ex.<\/p>"
+            "image": "shopify:\/\/shop_images\/r4.jpg",
+            "name": "Test 1  Perterson, RN",
+            "content": "<p>Test 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus. Phasellus nec tortor ex. 1234567890123456 7890123456789012345<\/p>"
           }
         },
         "text_67Ve8Y": {
@@ -50,11 +50,11 @@
       ],
       "settings": {
         "color_scheme": "accent-1",
-        "bg_image": "shopify:\/\/shop_images\/r3.jpg",
+        "bg_image": "shopify:\/\/shop_images\/r1.jpg",
         "background_color_card": "#1773b0",
         "subtitle": "What our customers say",
-        "title": "Doloremque Laudantium",
-        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus.",
+        "title": "Test 1 Doloremque Laudantium",
+        "description": "Test 1 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris laoreet erat sed luctus venenatis. Sed non lectus ullamcorper, aliquam ligula a, elementum orci. Donec sed porttitor risus.",
         "link_text": "See more reviews",
         "link_url": "\/",
         "padding_top": 80,
